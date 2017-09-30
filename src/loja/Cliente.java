@@ -10,5 +10,13 @@ package loja;
  * @author Adriano
  */
 public class Cliente extends Pessoa {
+
+    public void cadastrar(String nome, String cpf, String telefone){
+        
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setTelefone(telefone);
+        System.out.println("Cliente Cadastrado");
+    }
     
 }
