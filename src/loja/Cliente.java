@@ -29,4 +29,11 @@ public class Cliente extends Pessoa {
             System.out.println("Cliente "+ cli.toString() +" cadastrado com sucesso!");
         }   
     }    
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+    
+    
 }

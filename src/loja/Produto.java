@@ -13,10 +13,11 @@ abstract class Produto {
     
     private int codigo;
     private String nome;
-    private double valor;
+    private double precoVenda;
+    private double precoCompra;
 
     // add 3 metodos
-    
+
     public int getCodigo() {
         return codigo;
     }
@@ -33,19 +34,21 @@ abstract class Produto {
         this.nome = nome;
     }
 
-    public double getValor() {
-        return valor;
+    public double getPrecoVenda() {
+        return precoVenda;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setPrecoVenda(double precoVenda) {
+        this.precoVenda = precoVenda;
     }
 
-    @Override
-    public String toString() {
-        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", valor=" + valor + '}';
+    public double getPrecoCompra() {
+        return precoCompra;
+    }
+
+    public void setPrecoCompra(double precoCompra) {
+        this.precoCompra = precoCompra;
     }
     
-            
-    
+   
 }

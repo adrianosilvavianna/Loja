@@ -5,6 +5,8 @@
  */
 package loja;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Adriano
@@ -14,12 +16,30 @@ public class Console extends Produto{
     String marca;
     String modelo;
 
-    public Console(String categoria, int cod, String nome, double valor,String marca, String modelo) {
+    public Console(int cod, String nome, double precoCompra, double precoVenda, String marca, String modelo) {
         this.marca = marca;
         this.modelo = modelo;
-        super.setCodigo(cod);
+         super.setCodigo(cod);
         super.setNome(nome);
-        super.setValor(valor);
+        super.setPrecoCompra(precoCompra);
+        super.setPrecoVenda(precoVenda);
+        
+    }
+
+    Console() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return "Console{" + "Cod" + super.getCodigo() + "Nome" + super.getNome() + "marca=" + marca + ", modelo=" + modelo + 
+                "Preco Compra" + super.getPrecoCompra() + "Preco Venda" + super.getPrecoVenda() + '}';
+    }
+
+    void cadastrar(ArrayList<Console> consoles) {
+        
+        
+        
     }
     
     

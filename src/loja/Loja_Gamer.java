@@ -18,12 +18,54 @@ public final class Loja_Gamer {
     private final Scanner leia = new Scanner(System.in);
     
     private static final ArrayList<Cliente> clientes = new ArrayList<>();//
+    private static final ArrayList<Jogo> jogos =  new ArrayList<>();
+    private static final ArrayList<Console> consoles =  new ArrayList<>();
     
     public Loja_Gamer() {
-        
         this.perCadClientes();
-        
+        this.perCadProdutos();
         this.menu();
+    }
+    
+    private void perCadClientes() {
+        Cliente cli1 = new Cliente("Adriano", "07136330505", "(31) 9999-9999");
+        Cliente cli2 = new Cliente("Joao", "07289823301", "(31) 9999-9999");
+        Cliente cli3 = new Cliente("Andre", "07289823301", "(31) 9999-9999");
+        Cliente cli4 = new Cliente("Cinognato", "07289823301", "(31) 9999-9999");
+        
+        clientes.add(cli1);
+        clientes.add(cli2);
+        clientes.add(cli3);
+        clientes.add(cli4);
+        
+        for (Cliente cli : clientes) {
+            //System.out.println(cli.toString()+ "\n");
+        }
+    }
+    
+    private void perCadProdutos()
+    {
+        //JOGOS Jogo(String categoria, int cod, String nome, double precoVenda, double precoCompra)
+        Jogo jogo1 = new Jogo("Aventura", 123, "A hora da aventura", 190.00 , 100.00);
+        Jogo jogo2 = new Jogo("RPG", 1234, "Skyrim", 290.00 , 40.00);
+        
+        jogos.add(jogo1);
+        jogos.add(jogo2);
+        
+        for (Jogo jg : jogos) {
+            //System.out.println(jg.toString() + "\n");
+        }
+        
+        //Consoles Console(int cod, String nome, double precoCompra, double precoVenda, String marca, String modelo)
+        Console console1 = new Console(1, "PlayStation", 1899.90, 2000.90, "SONY", "Slim");
+        Console console2 = new Console(2, "XBOX", 1299.90, 1800.90, "Microsoft", "369x");
+        
+        consoles.add(console1);
+        consoles.add(console2);
+        
+        for (Console cs : consoles){
+            //System.out.println(cs.toString() + "\n");
+        }
     }
     
     public void menu() {
@@ -234,30 +276,53 @@ public final class Loja_Gamer {
         
         cli.cadastrar(clientes, cli);
         
+        cli.toString();
+        
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString()+ "\n");
+        }
+        
     }
     
     private void cadastroProduto(){
         
-        System.out.println("Deve cadastrar um produto");
+        System.out.println("O que pretende cadastrar?/n");
         
-    }
-
-    private void perCadClientes() {
-        Cliente cli1 = new Cliente("Adriano", "07136330505", "(31) 9999-9999");
-        Cliente cli2 = new Cliente("Joao", "07289823301", "(31) 9999-9999");
-        Cliente cli3 = new Cliente("Andre", "07289823301", "(31) 9999-9999");
-        Cliente cli4 = new Cliente("Cinognato", "07289823301", "(31) 9999-9999");
+        boolean sair = false;
+        int op = -1;
         
-        clientes.add(cli1);
-        clientes.add(cli2);
-        clientes.add(cli3);
-        clientes.add(cli4);
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "sair";
+            opcao[1] = "Jogo";
+            opcao[2] = "Console";
+            
+            for (int i = 0; i < 3; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
         
-        for (Cliente cli : clientes) {
-            cli.toString();
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    new Jogo().cadastrar(jogos);
+                    
+                    break;
+                case 2:
+                    new Console().cadastrar(consoles);
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
         }
     }
-    
-   
+
 }
 
