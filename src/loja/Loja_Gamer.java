@@ -5,6 +5,8 @@
  */
 package loja;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -15,7 +17,12 @@ public final class Loja_Gamer {
 
     private final Scanner leia = new Scanner(System.in);
     
+    private static final ArrayList<Cliente> clientes = new ArrayList<>();//
+    
     public Loja_Gamer() {
+        
+        this.perCadClientes();
+        
         this.menu();
     }
     
@@ -75,7 +82,7 @@ public final class Loja_Gamer {
                     sair = true;
                     break;
                 case 1:
-                    this.fazerLoginCliente();
+                    this.fazerLoginCliente(clientes);
                     break;
                 case 2:
                     this.fazerLoginAdmin();
@@ -89,8 +96,30 @@ public final class Loja_Gamer {
         }
     }
     
-    private void fazerLoginCliente(){
+    private void fazerLoginCliente(List<Cliente> clientes){
         
+        String nome;
+        String cpf;
+        
+        int chances = 10;
+        
+        while(chances != 0){
+            
+            System.out.println("Realize o login como cliente : ");
+            System.out.println("Nome: ");
+            nome = leia.next();
+            System.out.println("CPF: ");
+            cpf = leia.next();
+            
+             for (Cliente cli : clientes) {
+                 if(cli.nome.equals(nome) && cli.cpf.equals(cpf)){
+                     System.out.println("Cliente Logado com sucesso");
+                     this.menuCliente();
+                    }
+            }
+            chances--;
+            System.out.println("Login Errado! Voce tem "+ chances +" Tentativas /n");
+        }
     }
     
     private void fazerLoginAdmin(){
@@ -157,25 +186,76 @@ public final class Loja_Gamer {
         }
     }
     
+    private void menuCliente(){
+         boolean sair = false;
+        int op = -1;
+        
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "Fazer Compras";
+            opcao[1] = "Carrinho De Compras";
+            
+            for (int i = 0; i < 2; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
+        
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    System.out.println("Listar produtos");
+                    break;
+                case 1:
+                    System.out.println("Listar produtos no carrinho");
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
+        }
+    }
+    
     private void cadastroCliente(){
         String nome;
         String cpf;
         String telefone;
         
-        System.out.println("Cadastre um novo cliente \n Digite o nome :");
-        nome = leia.next();
-        System.out.println("Digite o CPF :");
-        cpf = leia.next();
-        System.out.println("Digite Telefone :");
-        telefone = leia.next();
+        Cliente cli = new Cliente();
         
-        new Cliente().cadastrar(nome, cpf, telefone);
+        System.out.println("Cadastre um novo cliente \n Digite o nome :");
+        cli.setNome(leia.next());
+        System.out.println("Digite o CPF :");
+        cli.setCpf(leia.next());
+        System.out.println("Digite Telefone :");
+        cli.setTelefone(leia.next());
+        
+        cli.cadastrar(clientes, cli);
+        
     }
     
     private void cadastroProduto(){
         
         System.out.println("Deve cadastrar um produto");
         
+    }
+
+    private void perCadClientes() {
+        Cliente cli1 = new Cliente("Adriano", "07136330505", "(31) 9999-9999");
+        Cliente cli2 = new Cliente("Joao", "07289823301", "(31) 9999-9999");
+        Cliente cli3 = new Cliente("Andre", "07289823301", "(31) 9999-9999");
+        Cliente cli4 = new Cliente("Cinognato", "07289823301", "(31) 9999-9999");
+        
+        clientes.add(cli1);
+        clientes.add(cli2);
+        clientes.add(cli3);
+        clientes.add(cli4);
+        
+        for (Cliente cli : clientes) {
+            cli.toString();
+        }
     }
     
    

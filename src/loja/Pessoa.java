@@ -9,7 +9,7 @@ package loja;
  *
  * @author Adriano
  */
-public class Pessoa {
+abstract class Pessoa {
     
     protected String nome;
     protected String cpf;
@@ -37,6 +37,11 @@ public class Pessoa {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" + "nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + '}';
     }
     
 }

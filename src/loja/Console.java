@@ -5,21 +5,24 @@
  */
 package loja;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author Adriano
  */
-public class Jogo extends Produto{
+public class Console extends Produto{
+    
+    String marca;
+    String modelo;
 
-    String categoria;
-
-    public Jogo(String categoria, int cod, String nome, double valor) {
-        this.categoria = categoria;
+    public Console(String categoria, int cod, String nome, double valor,String marca, String modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
         super.setCodigo(cod);
         super.setNome(nome);
         super.setValor(valor);
     }
+    
+    
+    
     
 }

@@ -5,18 +5,28 @@
  */
 package loja;
 
+import java.util.List;
+
 /**
  *
  * @author Adriano
  */
 public class Cliente extends Pessoa {
 
-    public void cadastrar(String nome, String cpf, String telefone){
-        
-        this.setNome(nome);
-        this.setCpf(cpf);
-        this.setTelefone(telefone);
-        System.out.println("Cliente Cadastrado");
+    public Cliente(String nome, String cpf, String telefone) {
+        super.setNome(nome);
+        super.setCpf(cpf);
+        super.setTelefone(telefone);
     }
     
+    public Cliente(){
+        
+    }
+    
+    public void cadastrar(List<Cliente> clientes, Cliente cli){
+        
+        if(clientes.add(cli)){
+            System.out.println("Cliente "+ cli.toString() +" cadastrado com sucesso!");
+        }   
+    }    
 }
