@@ -222,8 +222,10 @@ public final class Loja_Gamer {
                     this.menuAdminProduto();
                     break;
                 case 3:
-                    
+                    //LISTAR VENDAS
                     break;
+                case 4:
+                    //LISTAR ESTOQUE
                 default:
                     //Colocar opção invalida
                     System.out.println("Opção invalida /n");
@@ -372,8 +374,7 @@ public final class Loja_Gamer {
                     this.cadastroProduto();
                     break;
                 case 2:
-                    //new Jogo().toString();
-                    //new Console().toString();
+                    
                     break;
                 case 3:
                     this.excluirProuto();

@@ -23,11 +23,10 @@ public class Console extends Produto{
         super.setNome(nome);
         super.setPrecoCompra(precoCompra);
         super.setPrecoVenda(precoVenda);
-        
     }
 
     Console() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -38,15 +37,10 @@ public class Console extends Produto{
 
     void cadastrar(ArrayList<Console> consoles) {
         
-        
-        
     }
 
     void excluir(ArrayList<Console> consoles) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
     }
-    
-    
-    
     
 }

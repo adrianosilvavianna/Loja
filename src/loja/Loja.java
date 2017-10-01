@@ -16,9 +16,7 @@ public class Loja {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        
-        Loja_Gamer Loja = new Loja_Gamer();
+         Loja_Gamer Loja = new Loja_Gamer();
     }
     
 }
