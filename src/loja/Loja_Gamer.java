@@ -28,10 +28,10 @@ public final class Loja_Gamer {
     }
     
     private void perCadClientes() {
-        Cliente cli1 = new Cliente("Adriano", "07136330505", "(31) 9999-9999");
-        Cliente cli2 = new Cliente("Joao", "07289823301", "(31) 9999-9999");
-        Cliente cli3 = new Cliente("Andre", "07289823301", "(31) 9999-9999");
-        Cliente cli4 = new Cliente("Cinognato", "07289823301", "(31) 9999-9999");
+        Cliente cli1 = new Cliente(1,"Adriano", "07136330505", "(31) 9999-9999");
+        Cliente cli2 = new Cliente(2,"Joao", "07289823301", "(31) 9999-9999");
+        Cliente cli3 = new Cliente(3,"Andre", "07289823301", "(31) 9999-9999");
+        Cliente cli4 = new Cliente(4,"Cinognato", "07289823301", "(31) 9999-9999");
         
         clientes.add(cli1);
         clientes.add(cli2);
@@ -39,7 +39,7 @@ public final class Loja_Gamer {
         clientes.add(cli4);
         
         for (Cliente cli : clientes) {
-            //System.out.println(cli.toString()+ "\n");
+            System.out.println(cli.toString()+ "\n");
         }
     }
     
@@ -53,7 +53,7 @@ public final class Loja_Gamer {
         jogos.add(jogo2);
         
         for (Jogo jg : jogos) {
-            //System.out.println(jg.toString() + "\n");
+            System.out.println(jg.toString() + "\n");
         }
         
         //Consoles Console(int cod, String nome, double precoCompra, double precoVenda, String marca, String modelo)
@@ -64,7 +64,7 @@ public final class Loja_Gamer {
         consoles.add(console2);
         
         for (Console cs : consoles){
-            //System.out.println(cs.toString() + "\n");
+            System.out.println(cs.toString() + "\n");
         }
     }
     
@@ -197,12 +197,14 @@ public final class Loja_Gamer {
         int op = -1;
         
         while(!sair){
-            String[] opcao = new String[4];
-            opcao[0] = "Cadastrar Cliente";
-            opcao[1] = "Cadastrar Produto";
-            opcao[2] = "Realizar Venda";
+            String[] opcao = new String[5];
+            opcao[0] = "Sair";
+            opcao[1] = "Cliente";
+            opcao[2] = "Produto";
+            opcao[3] = "Vendas";
+            opcao[4] = "Estoque";
             
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 5; i++) {
                 System.out.println(i + " - " + opcao[i]);
             }
         
@@ -211,13 +213,16 @@ public final class Loja_Gamer {
             
             switch (op) {
                 case 0:
-                    this.cadastroCliente();
+                    sair = true;
                     break;
                 case 1:
-                    this.cadastroProduto();
+                    this.menuAdminCliente();
                     break;
                 case 2:
-                    System.out.println("fazer uma venda");
+                    this.menuAdminProduto();
+                    break;
+                case 3:
+                    
                     break;
                 default:
                     //Colocar opção invalida
@@ -229,13 +234,14 @@ public final class Loja_Gamer {
     }
     
     private void menuCliente(){
-         boolean sair = false;
+        boolean sair = false;
         int op = -1;
         
         while(!sair){
-            String[] opcao = new String[4];
-            opcao[0] = "Fazer Compras";
-            opcao[1] = "Carrinho De Compras";
+            String[] opcao = new String[3];
+            opcao[0] = "Sair";
+            opcao[1] = "Fazer Compras";
+            opcao[2] = "Carrinho De Compras";
             
             for (int i = 0; i < 2; i++) {
                 System.out.println(i + " - " + opcao[i]);
@@ -246,10 +252,10 @@ public final class Loja_Gamer {
             
             switch (op) {
                 case 0:
-                    System.out.println("Listar produtos");
+                    sair = true;
                     break;
                 case 1:
-                    System.out.println("Listar produtos no carrinho");
+                    this.listaCompra();
                     break;
                 default:
                     //Colocar opção invalida
@@ -260,34 +266,129 @@ public final class Loja_Gamer {
         }
     }
     
-    private void cadastroCliente(){
-        String nome;
-        String cpf;
-        String telefone;
+    private void menuAdminCliente() {
         
-        Cliente cli = new Cliente();
+        boolean sair = false;
+        int op = -1;
         
-        System.out.println("Cadastre um novo cliente \n Digite o nome :");
-        cli.setNome(leia.next());
-        System.out.println("Digite o CPF :");
-        cli.setCpf(leia.next());
-        System.out.println("Digite Telefone :");
-        cli.setTelefone(leia.next());
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "Sair";
+            opcao[1] = "Cadastrar";
+            opcao[2] = "Listar Todos";
+            opcao[3] = "Excluir";
+            
+            for (int i = 0; i < 4; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
         
-        cli.cadastrar(clientes, cli);
-        
-        cli.toString();
-        
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString()+ "\n");
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    new Cliente().cadastrar(clientes);
+                    break;
+                case 2:
+                    for (Cliente cliente : clientes) {
+                        System.out.println(cliente.toString()+ "\n");
+                    }
+                    break;
+                case 3:
+                    new Cliente().excluir(clientes);
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
         }
+    }
+
+    private void listaCompra() {
+        boolean sair = false;
+        int op = -1;
         
+        System.out.println("O que pretende comprar \n");
+        while(!sair){
+            String[] opcao = new String[3];
+            opcao[0] = "Sair";
+            opcao[1] = "Jogo";
+            opcao[2] = "Console";
+            
+            for (int i = 0; i < 3; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
+        
+            System.out.print("\n Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    new Jogo().toString();
+                    break;
+                case 2:
+                    new Console().toString();
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
+        }
+    }
+
+    private void menuAdminProduto() {
+        boolean sair = false;
+        int op = -1;
+        
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "sair";
+            opcao[1] = "Cadastrar";
+            opcao[2] = "Listar";
+            opcao[3] = "Excluir";
+            
+            for (int i = 0; i < 4; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
+        
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    this.cadastroProduto();
+                    break;
+                case 2:
+                    //new Jogo().toString();
+                    //new Console().toString();
+                    break;
+                case 3:
+                    this.excluirProuto();
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
+        }
     }
     
     private void cadastroProduto(){
-        
-        System.out.println("O que pretende cadastrar?/n");
-        
+        System.out.println("O que pretende cadastrar?/n");   
         boolean sair = false;
         int op = -1;
         
@@ -310,7 +411,6 @@ public final class Loja_Gamer {
                     break;
                 case 1:
                     new Jogo().cadastrar(jogos);
-                    
                     break;
                 case 2:
                     new Console().cadastrar(consoles);
@@ -324,5 +424,41 @@ public final class Loja_Gamer {
         }
     }
 
+    private void excluirProuto() {
+        
+        boolean sair = false;
+        int op = -1;
+        
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "sair";
+            opcao[1] = "Jogo";
+            opcao[2] = "Console";
+            
+            for (int i = 0; i < 3; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
+        
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    new Jogo().excluir(jogos);
+                    break;
+                case 2:
+                    new Console().excluir(consoles);
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
+        }
+    }
 }
 

@@ -64,5 +64,24 @@ public class Jogo extends Produto{
         this.categoria = categoria;
     }
 
-    
+    void excluir(ArrayList<Jogo> jogos) {
+        Jogo jogoFind = null;
+        System.out.println("Digite o cod do jogo :");
+        int codigo = leia.nextInt();
+        
+        for (Jogo jogo : jogos) {
+            
+            int cod = jogo.getCodigo();
+            
+            if(cod == codigo){
+                System.out.println("Jogo Encontrado");
+                jogoFind = jogo;
+            }
+        } 
+        
+        if(jogos.remove(jogoFind)){
+            System.out.println("Jogo Excluido com sucesso \n");
+        }
+        
+    }
 }

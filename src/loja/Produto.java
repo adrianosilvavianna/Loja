@@ -5,6 +5,8 @@
  */
 package loja;
 
+import java.util.List;
+
 /**
  *
  * @author Adriano
@@ -16,8 +18,16 @@ abstract class Produto {
     private double precoVenda;
     private double precoCompra;
 
-    // add 3 metodos
-
+    
+    public void listaProdutos(List<Produto> produtos){
+    
+        for (Produto produto : produtos) {
+            System.out.println(produto.toStringCliente()+ "\n");
+        }
+        
+    }
+        
+    
     public int getCodigo() {
         return codigo;
     }
@@ -49,6 +59,14 @@ abstract class Produto {
     public void setPrecoCompra(double precoCompra) {
         this.precoCompra = precoCompra;
     }
+
+    public String toStringCliente() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", precoVenda=" + precoVenda + '}';
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", precoVenda=" + precoVenda + ", precoCompra=" + precoCompra + '}';
+    }
     
-   
 }

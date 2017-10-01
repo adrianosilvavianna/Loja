@@ -41,6 +41,10 @@ public class Console extends Produto{
         
         
     }
+
+    void excluir(ArrayList<Console> consoles) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
