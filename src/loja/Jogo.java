@@ -32,7 +32,7 @@ public class Jogo extends Produto{
 
     @Override
     public String toString() {
-        return "Jogo{" + "Cod" + super.getCodigo() + "Nome" + super.getNome() + "categoria=" + categoria + "Preco Compra" + super.getPrecoCompra() + "Preco Venda" + super.getPrecoVenda() + '}';
+        return "Jogo{" + "Cod - " + super.getCodigo() + " Nome - " + super.getNome() + " Categoria - " + categoria + " Preco Compra - " + super.getPrecoCompra() + " Preco Venda - " + super.getPrecoVenda() + '}';
     }
 
     @SuppressWarnings("empty-statement")
@@ -83,5 +83,36 @@ public class Jogo extends Produto{
             System.out.println("Jogo Excluido com sucesso \n");
         }
         
+    }
+
+    void venda(ArrayList<Jogo> jogos, ArrayList<CarrinhoCompras> carrinho) {
+        
+        boolean sair = false;
+        int op = -1;
+        
+        System.out.println("O que pretende comprar \n");
+        while(!sair){
+            String[] opcao = new String[this.contJogos(jogos)];
+            int vetor = 0;
+            
+            for(Jogo jogo : jogos){                
+                opcao[vetor] = jogo.getNome();
+                System.out.println(vetor + " - " + opcao[vetor]);
+                vetor++;
+            }
+            System.out.print("\n Informe uma opção: ");
+            op = leia.nextInt();
+            System.out.println(opcao[op]);
+        }
+    }
+    
+    public int contJogos(ArrayList<Jogo> jogos){
+        
+        int cont = 0;
+        
+         for(Jogo jogo : jogos){
+            cont++;
+          }
+         return cont;
     }
 }

@@ -20,6 +20,8 @@ public final class Loja_Gamer {
     private static final ArrayList<Cliente> clientes = new ArrayList<>();//
     private static final ArrayList<Jogo> jogos =  new ArrayList<>();
     private static final ArrayList<Console> consoles =  new ArrayList<>();
+    private static final ArrayList<CarrinhoCompras> carrinho =  new ArrayList<>();
+    
     
     public Loja_Gamer() {
         this.perCadClientes();
@@ -334,7 +336,7 @@ public final class Loja_Gamer {
                     sair = true;
                     break;
                 case 1:
-                    new Jogo().toString();
+                    new Jogo().venda(jogos, carrinho);
                     break;
                 case 2:
                     new Console().toString();
