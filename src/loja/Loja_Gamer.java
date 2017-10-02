@@ -21,6 +21,7 @@ public final class Loja_Gamer {
     private static final ArrayList<Jogo> jogos =  new ArrayList<>();
     private static final ArrayList<Console> consoles =  new ArrayList<>();
     private static final ArrayList<CarrinhoCompras> carrinho =  new ArrayList<>();
+    private static final ArrayList<Venda> vendas =  new ArrayList<>();
     
     
     public Loja_Gamer() {
@@ -321,12 +322,13 @@ public final class Loja_Gamer {
         
         System.out.println("O que pretende comprar \n");
         while(!sair){
-            String[] opcao = new String[3];
+            String[] opcao = new String[4];
             opcao[0] = "Sair";
             opcao[1] = "Jogo";
             opcao[2] = "Console";
+            opcao[3] = "Carrinho De Compra";
             
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 System.out.println(i + " - " + opcao[i]);
             }
         
@@ -338,8 +340,7 @@ public final class Loja_Gamer {
                     sair = true;
                     break;
                 case 1:
-                    //error no isEmpty
-                    if(carrinhoCompras.isEmpty()){
+                    if(carrinhoCompras == null){
                         carrinhoCompras = new Jogo().venda(jogos, carrinho);
                         
                         for(CarrinhoCompras c : carrinhoCompras){
@@ -349,31 +350,53 @@ public final class Loja_Gamer {
                         carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
                     
                         for(CarrinhoCompras c : carrinhoCompras){
-                            valorTotal = valorTotal + c.getPrecoVenda();
+                            c.toStringCliente();
                         }
                     }
-                    
-                    System.out.println("Valor Total da compra é : "+valorTotal);
-
                     break;
                 case 2:
-                    //error no isEmpty
-                    if(carrinhoCompras.isEmpty()){
+                    if(carrinhoCompras == null){
                         carrinhoCompras = new Console().venda(consoles, carrinho);
                         
                         for(CarrinhoCompras c : carrinhoCompras){
                             valorTotal = valorTotal + c.getPrecoVenda();
                         }
                     }else{
-                        carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
+                        carrinhoCompras = new Console().venda(consoles, carrinho);
                     
                         for(CarrinhoCompras c : carrinhoCompras){
-                            valorTotal = valorTotal + c.getPrecoVenda();
+                            c.toStringCliente();
                         }
                     }
                     
-                    System.out.println("Valor Total da compra é : "+valorTotal);
-                    
+                    break;
+                case 3:
+                    if(carrinhoCompras == null){
+                            System.out.println("Voce não possui produtos selecionados!!");
+                    }else{
+                        for(CarrinhoCompras c : carrinhoCompras){
+                            
+                            c.toStringCliente();
+                            
+                            valorTotal = valorTotal + c.getPrecoVenda();
+                        }
+                        
+                        System.out.println("\n\n O Valor da sua compra é : "+ valorTotal + "\n");
+                        
+                        System.out.println("Finalizar compra \n 0 - Sim \n 1 - nao \n");
+                        int finish = leia.nextInt();
+                        
+                        if(finish == 0){
+                            Venda venda = new Venda(valorTotal);
+                            vendas.add(venda);
+                            
+                            System.out.println("Venda Realizada - "+ venda.toString());
+                            carrinhoCompras = null;
+                            
+                        }else{
+                            carrinhoCompras = null;
+                        }                        
+                    }
                     break;
                 default:
                     //Colocar opção invalida
