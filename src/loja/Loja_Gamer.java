@@ -316,6 +316,8 @@ public final class Loja_Gamer {
     private void listaCompra() {
         boolean sair = false;
         int op = -1;
+        ArrayList<CarrinhoCompras> carrinhoCompras = null;
+        double valorTotal = 0.0;
         
         System.out.println("O que pretende comprar \n");
         while(!sair){
@@ -336,10 +338,42 @@ public final class Loja_Gamer {
                     sair = true;
                     break;
                 case 1:
-                    new Jogo().venda(jogos, carrinho);
+                    //error no isEmpty
+                    if(carrinhoCompras.isEmpty()){
+                        carrinhoCompras = new Jogo().venda(jogos, carrinho);
+                        
+                        for(CarrinhoCompras c : carrinhoCompras){
+                            valorTotal = valorTotal + c.getPrecoVenda();
+                        }
+                    }else{
+                        carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
+                    
+                        for(CarrinhoCompras c : carrinhoCompras){
+                            valorTotal = valorTotal + c.getPrecoVenda();
+                        }
+                    }
+                    
+                    System.out.println("Valor Total da compra é : "+valorTotal);
+
                     break;
                 case 2:
-                    new Console().toString();
+                    //error no isEmpty
+                    if(carrinhoCompras.isEmpty()){
+                        carrinhoCompras = new Console().venda(consoles, carrinho);
+                        
+                        for(CarrinhoCompras c : carrinhoCompras){
+                            valorTotal = valorTotal + c.getPrecoVenda();
+                        }
+                    }else{
+                        carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
+                    
+                        for(CarrinhoCompras c : carrinhoCompras){
+                            valorTotal = valorTotal + c.getPrecoVenda();
+                        }
+                    }
+                    
+                    System.out.println("Valor Total da compra é : "+valorTotal);
+                    
                     break;
                 default:
                     //Colocar opção invalida

@@ -11,8 +11,25 @@ package loja;
  */
 public class CarrinhoCompras extends Produto{
 
-    public CarrinhoCompras() {
-    
+    double valorTotal = 0.0; 
+   
+    public CarrinhoCompras(int cod, String nome, double precoVenda) {
+        super.setCodigo(cod);
+        super.setNome(nome);
+        super.setPrecoVenda(precoVenda);
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "CarrinhoCompras{" + "valorTotal=" + valorTotal + '}';
     }
     
 }

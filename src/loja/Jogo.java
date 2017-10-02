@@ -85,16 +85,17 @@ public class Jogo extends Produto{
         
     }
 
-    void venda(ArrayList<Jogo> jogos, ArrayList<CarrinhoCompras> carrinho) {
+    public ArrayList venda(ArrayList<Jogo> jogos, ArrayList<CarrinhoCompras> carrinho) {
         
         boolean sair = false;
         int op = -1;
+        Jogo jogoFind = null;
         
         System.out.println("O que pretende comprar \n");
         while(!sair){
             String[] opcao = new String[this.contJogos(jogos)];
             int vetor = 0;
-            
+            System.out.println("Digite 99 para sair");
             for(Jogo jogo : jogos){                
                 opcao[vetor] = jogo.getNome();
                 System.out.println(vetor + " - " + opcao[vetor]);
@@ -102,8 +103,21 @@ public class Jogo extends Produto{
             }
             System.out.print("\n Informe uma opção: ");
             op = leia.nextInt();
-            System.out.println(opcao[op]);
+            
+            if(op == 99)    
+                break;
+            
+            for(Jogo jogo : jogos){
+                
+                if(opcao[op].equals(jogo.getNome())){
+                    System.out.println("Jogo " + jogo.getNome() + " Selecionado");
+                    
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(jogo.getCodigo(), jogo.getNome(), jogo.getPrecoVenda());
+                    carrinho.add(carrinhoCompras);
+                }
+            }
         }
+        return carrinho;
     }
     
     public int contJogos(ArrayList<Jogo> jogos){

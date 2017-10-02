@@ -6,6 +6,7 @@
 package loja;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -41,6 +42,51 @@ public class Console extends Produto{
 
     void excluir(ArrayList<Console> consoles) {
         //
+    }
+
+    ArrayList<CarrinhoCompras> venda(ArrayList<Console> consoles, ArrayList<CarrinhoCompras> carrinho) {
+        
+        Scanner leia = new Scanner(System.in);
+        
+        boolean sair = false;
+        int op = -1;
+        
+        System.out.println("O que pretende comprar \n");
+        while(!sair){
+            String[] opcao = new String[this.contConsole(consoles)];
+            int vetor = 0;
+            System.out.println("Digite 99 para sair");
+            for(Console console : consoles){                
+                opcao[vetor] = console.getNome();
+                System.out.println(vetor + " - " + opcao[vetor]);
+                vetor++;
+            }
+            System.out.print("\n Informe uma opção: ");
+            op = leia.nextInt();
+            
+            if(op == 99)    
+                break;
+            
+                for(Console console : consoles){                
+                
+                if(opcao[op].equals(console.getNome())){
+                    System.out.println("Console " + console.getNome() + " Selecionado");
+
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(console.getCodigo(), console.getNome(), console.getPrecoVenda());
+                    carrinho.add(carrinhoCompras);
+                }
+            }
+        }
+        return carrinho;
+    }
+
+    private int contConsole(ArrayList<Console> consoles) {
+        int cont = 0;
+        
+         for(Console c : consoles){
+            cont++;
+          }
+         return cont;
     }
     
 }
