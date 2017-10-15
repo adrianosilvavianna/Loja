@@ -17,10 +17,8 @@ abstract class Produto {
     private String nome;
     private double precoVenda;
     private double precoCompra;
-
     
     public void listaProdutos(List<Produto> produtos){
-    
         for (Produto produto : produtos) {
             System.out.println(produto.toStringCliente()+ "\n");
         }
