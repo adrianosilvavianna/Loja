@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Adriano
  */
-public class Estoque extends Produto{
+public class Estoque {
     
     Date dataCompra;
     int quantidade;
@@ -30,6 +30,12 @@ public class Estoque extends Produto{
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+    
+    public void estoqueBaixo(){
+        if(quantidade == 1){
+            System.out.println("Estoque baixo");
+        }
     }
     
 }

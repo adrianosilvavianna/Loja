@@ -5,7 +5,13 @@
  */
 package loja;
 
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import static java.util.Arrays.stream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,40 +23,49 @@ public final class Loja_Gamer {
 
     private final Scanner leia = new Scanner(System.in);
     
-    private static final ArrayList<Cliente> clientes = new ArrayList<>();//
+    private static final List<Cliente> clientes = new ArrayList<>();//
     private static final ArrayList<Jogo> jogos =  new ArrayList<>();
     private static final ArrayList<Console> consoles =  new ArrayList<>();
     private static final ArrayList<CarrinhoCompras> carrinho =  new ArrayList<>();
     private static final ArrayList<Venda> vendas =  new ArrayList<>();
     
     
-    public Loja_Gamer() {
+    public Loja_Gamer() throws FileNotFoundException {
         this.perCadClientes();
         this.perCadProdutos();
         this.menu();
+       
+        
     }
     
-    private void perCadClientes() {
+    private void perCadClientes() throws FileNotFoundException {
+        
+        
         Cliente cli1 = new Cliente(1,"Adriano", "07136330505", "(31) 9999-9999");
         Cliente cli2 = new Cliente(2,"Joao", "07289823301", "(31) 9999-9999");
         Cliente cli3 = new Cliente(3,"Andre", "07289823301", "(31) 9999-9999");
         Cliente cli4 = new Cliente(4,"Cinognato", "07289823301", "(31) 9999-9999");
+        Cliente cli5 = new Cliente(5,"Thallyta", "57289823301", "(31) 9999-9999");
         
         clientes.add(cli1);
         clientes.add(cli2);
         clientes.add(cli3);
         clientes.add(cli4);
+        clientes.add(cli5);
         
-        for (Cliente cli : clientes) {
-            System.out.println(cli.toString()+ "\n");
+         for (Cliente cli : clientes) {
+            System.out.println(cli.toString() + "\n");
         }
+        
+       
     }
     
     private void perCadProdutos()
     {
-        //JOGOS Jogo(String categoria, int cod, String nome, double precoVenda, double precoCompra)
         Jogo jogo1 = new Jogo("Aventura", 123, "A hora da aventura", 190.00 , 100.00);
         Jogo jogo2 = new Jogo("RPG", 1234, "Skyrim", 290.00 , 40.00);
+        Jogo jogo3 = new Jogo("Tiro", 1234, "CS GO", 290.00 , 40.00);
+        Jogo jogo4 = new Jogo("Infantil", 1234, "Princesa Leia", 290.00 , 40.00);
         
         jogos.add(jogo1);
         jogos.add(jogo2);
@@ -433,6 +448,16 @@ public final class Loja_Gamer {
                     this.cadastroProduto();
                     break;
                 case 2:
+                    
+                     for (Jogo jg : jogos) {
+                        System.out.println(jg.toString() + "\n");
+                    }
+                     
+                    for (Console cs : consoles) {
+                        System.out.println(cs.toString() + "\n");
+                    }
+        
+        
                     
                     break;
                 case 3:

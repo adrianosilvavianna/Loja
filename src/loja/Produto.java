@@ -5,13 +5,14 @@
  */
 package loja;
 
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author Adriano
  */
-abstract class Produto {
+abstract class Produto extends Estoque{
     
     private int codigo;
     private String nome;
@@ -23,6 +24,22 @@ abstract class Produto {
             System.out.println(produto.toStringCliente()+ "\n");
         }
         
+    }
+
+    public Date getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(Date dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
         
     

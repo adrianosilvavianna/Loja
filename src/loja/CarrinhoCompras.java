@@ -19,6 +19,10 @@ public class CarrinhoCompras extends Produto{
         super.setPrecoVenda(precoVenda);
     }
 
+    CarrinhoCompras() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public double getValorTotal() {
         return valorTotal;
     }

@@ -6,6 +6,7 @@
 package loja;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -50,6 +51,12 @@ public class Jogo extends Produto{
         super.setPrecoCompra(leia.nextDouble());
         System.out.println("Preco de venda : (Ex: 19,90)");
         super.setPrecoVenda(leia.nextDouble());
+        System.out.println("Quantidade");
+        super.setQuantidade(leia.nextInt());
+        
+        Date data = new Date();
+        
+        super.setDataCompra(data);
         
         if(jogos.add(jogo)){
             System.out.println("Jogo " + super.getNome() + " Cadastrado com sucesso \n");
