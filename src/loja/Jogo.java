@@ -125,6 +125,7 @@ public class Jogo extends Produto{
             }
         }
         return carrinho;
+        
     }
     
     public int contJogos(ArrayList<Jogo> jogos){
