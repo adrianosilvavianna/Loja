@@ -264,7 +264,7 @@ public final class Loja_Gamer {
                     for (Venda vd : vendas) {
                         System.out.println(vd.toString() + "\n");
                     }
-                    
+
                     break;
                 case 4:
                     this.menuEstoque();
