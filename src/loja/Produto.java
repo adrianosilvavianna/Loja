@@ -14,10 +14,10 @@ import java.util.List;
  */
 abstract class Produto extends Estoque{
     
-    private int codigo;
-    private String nome;
-    private double precoVenda;
-    private double precoCompra;
+    public int codigo;
+    public String nome;
+    public double precoVenda;
+    public double precoCompra;
     
     public void listaProdutos(List<Produto> produtos){
         for (Produto produto : produtos) {

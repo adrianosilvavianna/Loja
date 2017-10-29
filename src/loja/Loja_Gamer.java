@@ -31,14 +31,15 @@ public final class Loja_Gamer {
     
     
     public Loja_Gamer() throws FileNotFoundException {
-        this.perCadClientes();
-        this.perCadProdutos();
+        this.preCadClientes();
+        this.preCadProdutos();
+        this.preCadVendas();
         this.menu();
        
         
     }
     
-    private void perCadClientes() throws FileNotFoundException {
+    private void preCadClientes() throws FileNotFoundException {
         
         
         Cliente cli1 = new Cliente(1,"Adriano", "07136330505", "(31) 9999-9999");
@@ -56,19 +57,21 @@ public final class Loja_Gamer {
          for (Cliente cli : clientes) {
             System.out.println(cli.toString() + "\n");
         }
-        
-       
     }
     
-    private void perCadProdutos()
+    private void preCadProdutos()
     {
-        Jogo jogo1 = new Jogo("Aventura", 123, "A hora da aventura", 190.00 , 100.00);
-        Jogo jogo2 = new Jogo("RPG", 1234, "Skyrim", 290.00 , 40.00);
-        Jogo jogo3 = new Jogo("Tiro", 1234, "CS GO", 290.00 , 40.00);
-        Jogo jogo4 = new Jogo("Infantil", 1234, "Princesa Leia", 290.00 , 40.00);
+        Jogo jogo1 = new Jogo("Aventura", 123, "A hora da aventura", 190.00 , 100.00, 0);
+        Jogo jogo2 = new Jogo("RPG", 1234, "Skyrim", 290.00 , 40.00, 1);
+        Jogo jogo3 = new Jogo("Tiro", 1234, "CS GO", 290.00 , 40.00, 20);
+        Jogo jogo4 = new Jogo("Infantil", 1234, "Princesa Leia", 290.00 , 40.00, 32);
+        Jogo jogo5 = new Jogo("Futebol", 1234, "Fifa", 290.00 , 40.00, 34);
         
         jogos.add(jogo1);
         jogos.add(jogo2);
+        jogos.add(jogo3);
+        jogos.add(jogo4);
+        jogos.add(jogo5);
         
         for (Jogo jg : jogos) {
             System.out.println(jg.toString() + "\n");
@@ -77,13 +80,28 @@ public final class Loja_Gamer {
         //Consoles Console(int cod, String nome, double precoCompra, double precoVenda, String marca, String modelo)
         Console console1 = new Console(1, "PlayStation", 1899.90, 2000.90, "SONY", "Slim");
         Console console2 = new Console(2, "XBOX", 1299.90, 1800.90, "Microsoft", "369x");
+        Console console3 = new Console(2, "Nitendo Wii", 129.90, 180.90, "Nitendo", "niwii");
         
         consoles.add(console1);
         consoles.add(console2);
+        consoles.add(console3);
         
         for (Console cs : consoles){
             System.out.println(cs.toString() + "\n");
         }
+    }
+    
+    private void preCadVendas(){
+        
+        Venda venda1 = new Venda(129.33);
+        Venda venda2 = new Venda(829.33);
+        
+        vendas.add(venda1);
+        vendas.add(venda2);
+        
+        for (Venda vd : vendas){
+            System.out.println(vd.toString() + "\n");
+        }        
     }
     
     public void menu() {
@@ -240,10 +258,16 @@ public final class Loja_Gamer {
                     this.menuAdminProduto();
                     break;
                 case 3:
-                    //LISTAR VENDAS
+                    
+                    System.out.println("Lista de todas as vendas realizadas. /n/n/n");
+                    
+                    for (Venda vd : vendas) {
+                        System.out.println(vd.toString() + "\n");
+                    }
+                    
                     break;
                 case 4:
-                    //LISTAR ESTOQUE
+                    this.menuEstoque();
                 default:
                     //Colocar opção invalida
                     System.out.println("Opção invalida /n");
@@ -251,6 +275,67 @@ public final class Loja_Gamer {
                     break;
             }
         }
+    }
+    
+    private void menuEstoque(){
+        
+        boolean sair = false;
+        int op = -1;
+        
+        while(!sair){
+            String[] opcao = new String[4];
+            opcao[0] = "Sair";
+            opcao[1] = "Lista";
+            opcao[2] = "Verificar Produtos em falta";
+        
+            
+            for (int i = 0; i < 4; i++) {
+                System.out.println(i + " - " + opcao[i]);
+            }
+        
+            System.out.print("Informe uma opção: ");
+            op = leia.nextInt();
+            
+            switch (op) {
+                case 0:
+                    sair = true;
+                    break;
+                case 1:
+                    
+                    for (Jogo jg : jogos) {
+                        System.out.println(jg.toStringEstoque() + "\n");
+                    }
+                    
+                    for (Console cs : consoles) {
+                        System.out.println(cs.toStringEstoque() + "\n");
+                    }
+                    
+                    break;
+                case 2:
+                    
+                    for (Jogo jg : jogos) {
+                        
+                        jg.estoqueBaixo(jg);
+                        
+                    }
+                    
+                    for (Console cs : consoles) {
+                        
+                        cs.estoqueBaixo(cs);
+                    }
+                    
+                    break;
+                case 3:
+                    new Cliente().excluir(clientes);
+                    break;
+                default:
+                    //Colocar opção invalida
+                    System.out.println("Opção invalida /n");
+                    sair = true;
+                    break;
+            }
+        }
+        
     }
     
     private void menuCliente(){

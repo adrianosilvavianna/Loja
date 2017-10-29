@@ -32,9 +32,10 @@ public class Estoque {
         this.quantidade = quantidade;
     }
     
-    public void estoqueBaixo(){
-        if(quantidade == 1){
-            System.out.println("Estoque baixo");
+    public void estoqueBaixo(Produto pg){
+        
+        if(pg.quantidade <= 1){
+            System.out.println("O produto - "+ pg.nome +" - Esta acabando");
         }
     }
     

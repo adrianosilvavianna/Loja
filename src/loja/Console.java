@@ -30,12 +30,6 @@ public class Console extends Produto{
         
     }
 
-    @Override
-    public String toString() {
-        return "Console{" + "Cod" + super.getCodigo() + "Nome" + super.getNome() + "marca=" + marca + ", modelo=" + modelo + 
-                "Preco Compra" + super.getPrecoCompra() + "Preco Venda" + super.getPrecoVenda() + '}';
-    }
-
     void cadastrar(ArrayList<Console> consoles) {
         
     }
@@ -87,6 +81,18 @@ public class Console extends Produto{
             cont++;
           }
          return cont;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "Console{" + "Cod" + super.getCodigo() + "Nome" + super.getNome() + "marca=" + marca + ", modelo=" + modelo + 
+                "Preco Compra" + super.getPrecoCompra() + "Preco Venda" + super.getPrecoVenda() + '}';
+    }
+    
+    String toStringEstoque() {
+        return "Produto - Console " + " Cod " + super.getCodigo() + " Nome " + super.getNome() + " Marca " + marca + " Modelo " + modelo + 
+                " Preco Compra " + super.getPrecoCompra() + " Preco Venda " + super.getPrecoVenda() + " Quantidade Disponível " + super.getQuantidade() + " Data da Compra " + super.getDataCompra();
     }
     
 }

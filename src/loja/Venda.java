@@ -16,9 +16,13 @@ public class Venda{
     Date data;
     double valorTotalVenda;
     
-    public Venda(double valorTotalVenda) {
+    Venda(double valorTotalVenda) {
         this.valorTotalVenda = valorTotalVenda;
         this.data = new Date();
+    }
+
+    Venda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

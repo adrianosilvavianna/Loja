@@ -19,21 +19,18 @@ public class Jogo extends Produto{
     private final Scanner leia = new Scanner(System.in);
     String categoria;
 
-    public Jogo(String categoria, int cod, String nome, double precoVenda, double precoCompra) {
+    public Jogo(String categoria, int cod, String nome, double precoVenda, double precoCompra, int qtd) {
         this.categoria = categoria;
         super.setCodigo(cod);
         super.setNome(nome);
         super.setPrecoCompra(precoCompra);
         super.setPrecoVenda(precoVenda);
+        super.setQuantidade(qtd);
+        super.setDataCompra(new Date());
     }
 
     public Jogo() {
         
-    }
-
-    @Override
-    public String toString() {
-        return "Jogo{" + "Cod - " + super.getCodigo() + " Nome - " + super.getNome() + " Categoria - " + categoria + " Preco Compra - " + super.getPrecoCompra() + " Preco Venda - " + super.getPrecoVenda() + '}';
     }
 
     @SuppressWarnings("empty-statement")
@@ -136,5 +133,14 @@ public class Jogo extends Produto{
             cont++;
           }
          return cont;
+    } 
+
+    @Override
+    public String toString() {
+        return "Jogo{" + "Cod - " + super.getCodigo() + " Nome - " + super.getNome() + " Categoria - " + categoria + " Preco Compra - " + super.getPrecoCompra() + " Preco Venda - " + super.getPrecoVenda() + '}';
+    }
+    
+    String toStringEstoque() {
+            return "Produto - Jogo" + "Cod - " + super.getCodigo() + " Nome - " + super.getNome() + " Categoria - " + categoria + " Preco Compra - " + super.getPrecoCompra() + " Preco Venda - " + super.getPrecoVenda() + " Quantidade Disponívvel" + super.getQuantidade() + "Data da Compra" + super.getDataCompra();
     }
 }
