@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import static java.util.Arrays.stream;
 import java.util.List;
 import java.util.Scanner;
-
 /**
  *
  * @author Adriano

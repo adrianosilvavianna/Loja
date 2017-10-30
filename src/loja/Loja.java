@@ -22,8 +22,6 @@ public class Loja {
         // TODO code application logic here
          Loja_Gamer Loja = new Loja_Gamer();
          
-         
-       
     }
     
 }
