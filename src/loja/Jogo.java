@@ -108,15 +108,14 @@ public class Jogo extends Produto{
             System.out.print("\n Informe uma opção: ");
             op = leia.nextInt();
             
-            if(op == 99)    
+            if(op == 00)    
                 break;
             
             for(Jogo jogo : jogos){
                 
                 if(opcao[op].equals(jogo.getNome())){
                     System.out.println("Jogo " + jogo.getNome() + " Selecionado");
-                    
-                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(jogo.getCodigo(), jogo.getNome(), jogo.getPrecoVenda());
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(jogo);
                     carrinho.add(carrinhoCompras);
                 }
             }

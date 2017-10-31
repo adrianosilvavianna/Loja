@@ -66,7 +66,7 @@ public class Console extends Produto{
                 if(opcao[op].equals(console.getNome())){
                     System.out.println("Console " + console.getNome() + " Selecionado");
 
-                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(console.getCodigo(), console.getNome(), console.getPrecoVenda());
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(console);
                     carrinho.add(carrinhoCompras);
                 }
             }

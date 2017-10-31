@@ -5,22 +5,37 @@
  */
 package loja;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Adriano
  */
-public class CarrinhoCompras extends Produto{
+public class CarrinhoCompras {
 
     double valorTotal = 0.0; 
+    private static final List<Produto> produtos = new ArrayList<>();
    
-    public CarrinhoCompras(int cod, String nome, double precoVenda) {
-        super.setCodigo(cod);
-        super.setNome(nome);
-        super.setPrecoVenda(precoVenda);
+    public CarrinhoCompras(Produto produto) {
+        produtos.add(produto);
     }
 
     CarrinhoCompras() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void getCarrinhoCompras(){
+         for (Produto pdt : produtos) {
+            System.out.println(pdt.toString() + "\n");
+        }
+    }
+    
+    public void addValorCompra()
+    {
+        for (Produto pdt : produtos) {
+            valorTotal += pdt.precoVenda;
+        }
     }
 
     public double getValorTotal() {
@@ -30,7 +45,9 @@ public class CarrinhoCompras extends Produto{
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-
+    
+    
+    
     @Override
     public String toString() {
         return "CarrinhoCompras{" + "valorTotal=" + valorTotal + '}';

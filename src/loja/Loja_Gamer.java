@@ -34,8 +34,6 @@ public final class Loja_Gamer {
         this.preCadProdutos();
         this.preCadVendas();
         this.menu();
-       
-        
     }
     
     private void preCadClientes() throws FileNotFoundException {
@@ -62,9 +60,9 @@ public final class Loja_Gamer {
     {
         Jogo jogo1 = new Jogo("Aventura", 123, "A hora da aventura", 190.00 , 100.00, 0);
         Jogo jogo2 = new Jogo("RPG", 1234, "Skyrim", 290.00 , 40.00, 1);
-        Jogo jogo3 = new Jogo("Tiro", 1234, "CS GO", 290.00 , 40.00, 20);
-        Jogo jogo4 = new Jogo("Infantil", 1234, "Princesa Leia", 290.00 , 40.00, 32);
-        Jogo jogo5 = new Jogo("Futebol", 1234, "Fifa", 290.00 , 40.00, 34);
+        Jogo jogo3 = new Jogo("Tiro", 12345, "CS GO", 290.00 , 40.00, 20);
+        Jogo jogo4 = new Jogo("Infantil", 123456, "Princesa Leia", 290.00 , 40.00, 32);
+        Jogo jogo5 = new Jogo("Futebol", 1234567, "Fifa", 290.00 , 40.00, 34);
         
         jogos.add(jogo1);
         jogos.add(jogo2);
@@ -257,13 +255,10 @@ public final class Loja_Gamer {
                     this.menuAdminProduto();
                     break;
                 case 3:
-                    
                     System.out.println("Lista de todas as vendas realizadas. /n/n/n");
-                    
                     for (Venda vd : vendas) {
                         System.out.println(vd.toString() + "\n");
                     }
-
                     break;
                 case 4:
                     this.menuEstoque();
@@ -285,8 +280,7 @@ public final class Loja_Gamer {
             String[] opcao = new String[4];
             opcao[0] = "Sair";
             opcao[1] = "Lista";
-            opcao[2] = "Verificar Produtos em falta";
-        
+            opcao[2] = "Produtos Com Baixo Estoque";      
             
             for (int i = 0; i < 4; i++) {
                 System.out.println(i + " - " + opcao[i]);
@@ -345,7 +339,6 @@ public final class Loja_Gamer {
             String[] opcao = new String[3];
             opcao[0] = "Sair";
             opcao[1] = "Fazer Compras";
-            opcao[2] = "Carrinho De Compras";
             
             for (int i = 0; i < 2; i++) {
                 System.out.println(i + " - " + opcao[i]);
@@ -416,7 +409,7 @@ public final class Loja_Gamer {
     private void listaCompra() {
         boolean sair = false;
         int op = -1;
-        ArrayList<CarrinhoCompras> carrinhoCompras = null;
+        CarrinhoCompras carrinhoCompras;
         double valorTotal = 0.0;
         
         System.out.println("O que pretende comprar \n");
@@ -439,63 +432,58 @@ public final class Loja_Gamer {
                     sair = true;
                     break;
                 case 1:
-                    if(carrinhoCompras == null){
-                        carrinhoCompras = new Jogo().venda(jogos, carrinho);
-                        
-                        for(CarrinhoCompras c : carrinhoCompras){
-                            valorTotal = valorTotal + c.getPrecoVenda();
-                        }
-                    }else{
-                        carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
                     
-                        for(CarrinhoCompras c : carrinhoCompras){
-                            c.toStringCliente();
-                        }
-                    }
+                      this.vendaJogo();
+                    
+//                    if(carrinhoCompras == null){
+//                        carrinhoCompras = new Jogo().venda(jogos);
+//                        
+//                    }else{
+//                        carrinhoCompras = new Jogo().venda(jogos, carrinhoCompras);
+//                    
+//                    }
                     break;
                 case 2:
-                    if(carrinhoCompras == null){
-                        carrinhoCompras = new Console().venda(consoles, carrinho);
-                        
-                        for(CarrinhoCompras c : carrinhoCompras){
-                            valorTotal = valorTotal + c.getPrecoVenda();
-                        }
-                    }else{
-                        carrinhoCompras = new Console().venda(consoles, carrinho);
                     
-                        for(CarrinhoCompras c : carrinhoCompras){
-                            c.toStringCliente();
-                        }
-                    }
+                    this.vendaConsole();
+                    
+//                    if(carrinhoCompras == null){
+//                        carrinhoCompras = new Console().venda(consoles, carrinho);
+//                        
+//                    }else{
+//                        carrinhoCompras = new Console().venda(consoles, carrinho);
+//                    
+//                        
+//                    }
                     
                     break;
                 case 3:
-                    if(carrinhoCompras == null){
-                            System.out.println("Voce não possui produtos selecionados!!");
-                    }else{
-                        for(CarrinhoCompras c : carrinhoCompras){
-                            
-                            c.toStringCliente();
-                            
-                            valorTotal = valorTotal + c.getPrecoVenda();
-                        }
-                        
-                        System.out.println("\n\n O Valor da sua compra é : "+ valorTotal + "\n");
-                        
-                        System.out.println("Finalizar compra \n 0 - Sim \n 1 - nao \n");
-                        int finish = leia.nextInt();
-                        
-                        if(finish == 0){
-                            Venda venda = new Venda(valorTotal);
-                            vendas.add(venda);
-                            
-                            System.out.println("Venda Realizada - "+ venda.toString());
-                            carrinhoCompras = null;
-                            
-                        }else{
-                            carrinhoCompras = null;
-                        }                        
-                    }
+//                    if(carrinhoCompras == null){
+//                            System.out.println("Voce não possui produtos selecionados!!");
+//                    }else{
+//                        for(CarrinhoCompras c : carrinhoCompras){
+//                            
+//                            c.toStringCliente();
+//                            
+//                            valorTotal = valorTotal + c.getPrecoVenda();
+//                        }
+//                        
+//                        System.out.println("\n\n O Valor da sua compra é : "+ valorTotal + "\n");
+//                        
+//                        System.out.println("Finalizar compra \n 0 - Sim \n 1 - nao \n");
+//                        int finish = leia.nextInt();
+//                        
+//                        if(finish == 0){
+//                            Venda venda = new Venda(valorTotal);
+//                            vendas.add(venda);
+//                            
+//                            System.out.println("Venda Realizada - "+ venda.toString());
+//                            carrinhoCompras = null;
+//                            
+//                        }else{
+//                            carrinhoCompras = null;
+//                        }                        
+//                    }
                     break;
                 default:
                     //Colocar opção invalida
@@ -626,6 +614,88 @@ public final class Loja_Gamer {
                     System.out.println("Opção invalida /n");
                     sair = true;
                     break;
+            }
+        }
+    }
+
+    private void vendaJogo() {
+        boolean sair = false;
+        int op = -1;
+        Jogo jogoFind = null;
+        
+        System.out.println("O que pretende comprar \n");
+        while(!sair){
+       
+            int cont = 0;
+        
+            for(Jogo jogo : jogos){
+                cont++;
+            }
+         
+            String[] opcao = new String[cont];
+            int vetor = 0;
+            System.out.println("Digite 00 para sair");
+            for(Jogo jogo : jogos){                
+                opcao[vetor] = jogo.getNome();
+                System.out.println(vetor + " - " + opcao[vetor]);
+                vetor++;
+            }
+            System.out.print("\n Informe uma opção: ");
+            op = leia.nextInt();
+            
+            if(op == 00)    
+                break;
+            
+            for(Jogo jogo : jogos){
+                
+                if(opcao[op].equals(jogo.getNome())){
+                    System.out.println("Jogo " + jogo.getNome() + " Selecionado");
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(jogo);    
+                    carrinhoCompras.getCarrinhoCompras();
+                    carrinhoCompras.getValorTotal();
+                    
+                }
+            }
+        }
+    }
+
+    private void vendaConsole() {
+        int cont = 0;
+        
+        for(Console c : consoles){
+           cont++;
+        }
+        
+        Scanner leia = new Scanner(System.in);
+        
+        boolean sair = false;
+        int op = -1;
+        
+        System.out.println("O que pretende comprar \n");
+        while(!sair){
+            String[] opcao = new String[cont];
+            int vetor = 0;
+            System.out.println("Digite 00 para sair");
+            for(Console console : consoles){                
+                opcao[vetor] = console.getNome();
+                System.out.println(vetor + " - " + opcao[vetor]);
+                vetor++;
+            }
+            System.out.print("\n Informe uma opção: ");
+            op = leia.nextInt();
+            
+            if(op == 00)    
+                break;
+            
+                for(Console console : consoles){                
+                
+                if(opcao[op].equals(console.getNome())){
+                    System.out.println("Console " + console.getNome() + " Selecionado");
+
+                    CarrinhoCompras carrinhoCompras = new CarrinhoCompras(console);
+                    carrinhoCompras.getCarrinhoCompras();
+                    carrinhoCompras.getValorTotal();
+                }
             }
         }
     }
