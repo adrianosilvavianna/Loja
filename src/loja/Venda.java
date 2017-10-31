@@ -5,6 +5,7 @@
  */
 package loja;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,6 +16,7 @@ public class Venda{
     
     Date data;
     double valorTotalVenda;
+    private static final ArrayList<CarrinhoCompras> carrinho =  new ArrayList<>();
     
     Venda(double valorTotalVenda) {
         this.valorTotalVenda = valorTotalVenda;
@@ -31,5 +33,5 @@ public class Venda{
     }
 
     
-    
 }
+
