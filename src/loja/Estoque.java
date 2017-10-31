@@ -35,7 +35,7 @@ public class Estoque {
     public void estoqueBaixo(Produto pg){
         
         if(pg.quantidade <= 1){
-            System.out.println("O produto - "+ pg.nome +" - Esta acabando");
+            System.out.println("O produto - "+ pg.nome +" - Esta acabando - Possui apenas "+ pg.quantidade + " unidades .");
         }
     }
     
