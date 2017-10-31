@@ -22,9 +22,14 @@ public class CarrinhoCompras {
     }
 
     CarrinhoCompras() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
+    public void setCarrinho(Produto produto) {
+        produtos.add(produto);
+        
+    }
+    
     public void getCarrinhoCompras(){
          for (Produto pdt : produtos) {
             System.out.println(pdt.toString() + "\n");
@@ -51,6 +56,10 @@ public class CarrinhoCompras {
     @Override
     public String toString() {
         return "CarrinhoCompras{" + "valorTotal=" + valorTotal + '}';
+    }
+
+    void finish() {
+        produtos.clear();
     }
     
 }
